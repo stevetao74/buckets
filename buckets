@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+#include<stack>
+
+int main(){
+	string str[100];//[100];
+	stack<char> sc;
+	int n=0,m=n;
+	do cin>>n;
+	while(n<1||n>100);
+	m=n;
+	while(m--) cin>>str[m];
+	while(n--){
+		int len=(str[n].length());
+		while(len--){
+			if((str[n])[str[n].length()-len-1]=='['||
+					(str[n])[str[n].length()-len-1]=='(')
+						sc.push((str[n])[str[n].length()-len-1]);
+			else if(
+			((str[n])[str[n].length()-len-1]==']'&&sc.top()=='[')
+			||
+			((str[n])[str[n].length()-len-1]==')'&&sc.top()=='(')
+			)
+				sc.pop();	
+		}
+		if(sc.empty()) cout<<"yes"<<endl;
+		else cout<<"NO"<<endl;
+	while(sc.size()>0) sc.pop();
+	}
+return 0;
+}
